@@ -338,3 +338,144 @@ BasicObject
 .Herencia
 .Módulos y mixins
 
+.Extras
+
+-bundler y las ruby gems
+
+Son ciertas librerias o paquetes que ya alguien realizo y que ya tienen una funcionabilidad en especifico
+y podemos incluir esas gemas en nuestros proyectos y asi ahorrarnos codigo y tiempo
+No se trata de reinventar la rueda si podemos utilizar las herramientas que alguien mas ya hizo solamente
+hay que aprender a usar las gemas.
+
+Un bundler si venimos de javascript o de node puede ser como un npm, osea es un manejador de paquetes pero
+en este caso de gemas(librerias), bundler es el encargado de ir a la base de datos del npm un paquete en
+especifico y traerlo e incluirlo dentro de nuestro proyecto. Bundler es el npm y los paquetes son las gems.
+
+Todas estas gemas estan alocadas en la pagina: rubygems.org
+
+Normalmente bundler ya viene instalado cuando instalamos Ruby pero si no, podemos instalarlo asi: gem install bundler
+Hay que instalarlo dentro de la carpeta del proyecto
+
+Recordar que ruby ya viene instalado en muchos sistemas operativos, pero si no podemos instalarlo desde su  pagina o con rvm
+
+.Declarar un proyecto nuevo en ruby!
+
+mkdir nombre_del_proyecto
+bundle init
+
+Esto va a crear un archivo Gemfile dentro de mi carpeta donde haya ejecutado el bundle init (inicializando el proyecto)
+Con el sig contenido:
+
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# gem "rails"
+
+.Que es el Gemfile
+
+Asi como los archivos o los proyectos que incluyen npm nos crean un package.json, el Gemfile sería su similar,
+aqui es donde podremos ver y agregar todas las gemas que queramos en nuestro proyecto, las gemas que esten declaradas ahi
+despues podemos correr bundle install y bundle ira al sitio rubygems y descargara el contenido de esas gemas para poder ser
+utilizadas en nuestro proyecto.
+
+Agregaremos en el Gemfile: gem 'bcrypt', '~> 3.1', '>= 3.1.20'
+Y despues en la terminal ejecutaremos: bundle install o bundle i
+
+Una vez que se descarguen las librerias, aparecera un archivo llamado Gemfile.lock, pero este archivo es solamente para
+Ruby, este archivo no lo modificaremos para nada.
+
+.Pruebas / Tests
+
+Gemas: RSpec y Minitest
+
+RSpec es un DSL o lenguaje de dominio especifico, osea que solo sera util en un fin en especifico y este es realizar pruebas.
+
+Minitest es el mismo codigo Ruby que hara pruebas al codigo Ruby a traves de palabras de "comandos" / reservadas eso quiere
+decir que sirve para hacer pruebas y para codear y RSpec solo para pruebas.
+
+Agregamos al Gemfile:
+
+gem 'rspec', '~> 3.12'
+gem 'minitest', '~> 5.20'
+
+bundle i
+
+Realizaremos pruebas con RSpec, para ello hay que inicializar RSpec: rspec --init
+
+Esto nos va a crear un archivo .rspec y una carpeta spec con un archivo dentro llamado spec_helper.rb
+
+Este spec_helper.rb es donde estara toda la configuración que se utilizaran en nuestras pruebas
+
+Crearemos una carpeta src y aqui guardaremos todas las clases que usaremos y dentro de la carpeta spec los archivos de pruebas.
+
+En la carpeta src crearemos el archivo factorial.rb
+En la carpeta spec crearemos el archivo de prueba factorial_spec.rb
+
+Por convencion se pone el mismo nombre del archivo a probar pero lo que si debe ir es el _spec.rb
+En la parte de arriba debo decirle al archivo de prueba que archivo es el que vamos a probar, para esto le damos la direccion
+del archivo a probar, poniendolo en la parte de arriba.
+
+RSpec
+
+require './src/factorial.rb' # requerimos el archivo al cual le haremos las pruebas
+
+RSpec.describe Factorial do # coloco la clase a la cual le hare la prueba y abro un bloque
+  describe "#factorial_of" do # coloco al metodo al cual yo quiero hacerle la prueba
+    it "devolver un 120" do # coloco lo que yo espero recibir al probar el metodo
+      expect(Factorial.new.factorial_of(5)).to eq(120) # espero que al inicializar el factorial y ejecutar ese metodo con el argumento 5, el resultado sea igual a 120
+    end
+  end
+end
+
+Y para correr las pruebas, estando fuera de la carpeta spec:
+bundle exec rspec o rspec - se ejecutaran todas las pruebas
+rspec ruta_del_archivo - se ejecuta solo ese archivo
+
+rspec ./spec/test_saludo.rb
+
+Y en este caso la prueba paso correctamente
+
+Minitest
+
+En MiniTest las pruebas de corren de forma aleatoria por lo que no podemos depender de una prueba anterior o siguiente ya que es posible que falle
+Si tenemos 3 pruebas puede que se ejecuten en orden, 1-2-3 despues 2-1-3 y asi aleatoriamente 
+
+Asi que si ocupamos una variable constante debemos declararlas en un metodo anterior y de ahi poder utilizar esas variables de instancia
+
+Codigo ruby que se ejcutara dentro del codigo ruby, por lo que no ocupamos una carpeta especial para las pruebas.
+Crearemos un archivo dentro de la carpeta src llamado saludo.rb
+Y dentro de la carpeta src crearemos test_saludo.rb a diferencia de rspec que era dentro de la carpeta spec (pero por orden si lo llevamos a otra carpeta de pruebas en un futuro)
+
+Para ejecutar la prueba con Minitest se hace de la siguiente manera: bundle exec ruby ruta_del_archivo_a_probar
+
+bundle exec ruby ./src/test_saludo.rb
+
+Se creo un archivo en la otra carpeta para probar que no importa donde este, correra bien: bundle exec ruby ./spec/test_saludo.rb
+
+.byebug
+
+debuggear es un termino muy utilizado en los lenguajes de programacion y es la funcionabilidad de poder saber exactamente en que linea de codigo esta fallando nuestro programa
+y eso haga que se cierre y nosotros debemos buscar/investigar y saber encontrar ese error y solucionarlo.
+
+Buscaremos la gema byebug en nuestra pagina rubygems.org y la colocaremos en el Gemfile: gem 'byebug', '~> 11.1', '>= 11.1.3' para correr bundle i y ya tenerla en el proyecto
+
+En el archivo que queramos utilizar esta gema, siempre hay que requerirlo al igual que las demas gemas en otros archivos: require 'byebug' en este caso lo colocamos dentro de animal.rb
+
+Ruby retorna la ultima linea de codigo dentro de un bloque
+
+Cuando el programa encuentre un byebug dentro de su ejecucion se detendra y ahi podremos revisar el codigo
+
+.Manejo de archivos
+
+File.open("archivo.txt", "r") do |f|
+  while line = f.gets
+    puts line.upcase
+    puts line.downcase
+  end
+end
+
+En ruby asi como en muchos lenguajes, podemos leer archivos y escribirlos
+Los archivos se controlan linea por linea, ya sea de arriba a abajo de abajo hacia abajo
+
+Vamos a crear un archivo file.txt dentro de mi carpeta src
