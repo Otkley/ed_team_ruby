@@ -1,0 +1,340 @@
+.Ruby
+
+-Creado por Yukihiro Matsumoto
+-Creado en 1995 / Explota en 2005 por Ruby on Rails
+-Inspirado en lenguajes como Python y Perl
+-Interpretado y orientado a objetos / Todo es un objeto o casi todo
+
+Ventajas
+
+-Todo es un objeto, no debemos tipar el tipo de variable / num = 5 ruby entiende que 5 es un objeto numeric
+-Modificable al gusto
+-Productividad y diversión del desarrollador
+-Lenguaje antiguo y maduro
+
+Desventajas
+
+-Lento?
+-Decrecimiento en popularidad
+-No tiene una gran compañia detras
+-Alto uso de memoria?
+
+.Ruby3
+
+-Performance
+-Concurrency
+-Static analysis
+-Transition issues
+
+Performance
+
+-Velocidad
+-Garbage Compactor / Object separator / Mark and swip
+-Nuevo Ruby JIT / Compilacion just in time
+
+Concurrency
+
+Habilidad que tiene un lenguaje para ejecutar procesos simultaneos
+-Falcon Rack webserver y Async
+-Computación paralela
+
+Static analysis
+
+Se repite codigo en las pruebas
+-Steep
+-Sorbet
+
+Transition issues
+
+-Transmission parameters
+-Compatibilidad con versiones anteriores
+
+.Numeric / Integer
+
+Binario a entero
+0b"binario" = entero
+0b1011011 = 91
+
+Base octal a entero
+0"base_octal" = entero
+01475 = 829
+
+Base exadecimal a entero
+0x"exadecimal" = entero
+0xCE45 = 52805
+
+Math::PI = 3.14159...
+pi = Math::PI
+pi.round = 3
+pi.round(5) = 3.14159
+
+def commas x
+  str = x.to_s.reverse
+  str.gsub!(/([0-9]{3})/,"\\1,")
+  str.gsub(/,$/,"").reverse
+end
+
+commas 1456789 = "1,456,789"
+
+Bases partiendo de entero
+237.to_s = "237" - string
+237.to_s(2) = "11101101" - binario
+237.to_s(8) = "355" - base 8
+237.to_s(16) = "ed" - base 16
+
+Math.sqrt(25) = 5.0 - Funcion para sacar la raiz cuadrada
+
+Raices: cubicas, cuartas, etc . . .
+
+x = 531441
+raiz_cubica = Math.exp(Math.log(x)/3.0) = 81.0000000003
+raiz_cuarta = Math.exp(Math.log(x)/4.0) = 27.0
+raiz_quinta = Math.exp(Math.log(x)/5.0) = 
+
+a = rand = 0.29234823892
+a = rand * 100 = 43.32454436543
+a.round = 43
+a = rand(25) = numeros random entre 0 y 25
+
+numero = 5
+numero.methods = [lista de metodos para el objeto 5]
+numero.even? = false - par
+!numero.even? = true - par negado
+numero.odd? = true - impar
+
+.String y Symbols
+
+tipos de variables
+
+variable_local = 1
+CONSTANTES = 2
+@instancia = 3
+@@de_clase = 4
+$globales = 5
+
+Las variables locales solo viven dentro de su scope
+Las variables de instancia cada objeto tendra su valor propio
+Las variables de clase, todos los objetos de esa clase compartiran ese valor
+Las variables globales pueden ser accedidas desde cualquier punto de mi programa
+
+nombre = "Sergio"
+puts "hola #{nombre}" = hola Sergio
+cadena = "soy un muñeco de nieve \u2603"
+puts %q[ella dijo: "buenos dias"] = ella dijo: "buenos dias"
+
+Funcion recursiva
+Un factorial es multiplicar un numero por todos sus numeros anteriores: 
+5 x 4
+r x 3
+r x 2
+r x 1
+= 120
+
+string = "la respuestsa es: #{def factorial(n)
+  n == 0 ? 1 : n * factorial(n-1)
+end
+answer = factorial(5)},
+claro que si"
+= "la respuestsa es: 120,\nclaro que si"
+
+nombre = "Sergio"
+nombre.class = String
+nombre.methods = [Lista de metodos de la clase del objeto nombre]
+nombre.include? "S" = true
+nombre.include? "Z" = false
+nombre.include? "s" = false
+nombre.eql? "Sergio" = true
+nombre.eql? "sergio" = false
+nombre.length = 6
+nombre.size = 6
+s1 = "Era un dia muy oscuro"
+palabras = s1.split = ["Era, "un", "dia", "muy", "oscuro"]
+
+nombre = "Hector"
+nombre2 = "Hector"
+nombre.object.id = 280
+nombre2.object.id = 300
+
+:rojo # :rojo
+color1 = :rojo # :rojo
+color2 = :rojo # :rojo
+color1.object.id # 2210588
+color2.object.id # 2210588
+
+Los simbolos son una etiqueta, son diferentes a los strings.
+
+.Hashes y arrays
+
+arrays, vectores
+languages = [
+  "Ruby",
+  "Python",
+  "C++
+]
+
+hashes, diccionarios, maps
+dictionary = {
+  "uno": "one",
+  "dos": "two",
+  "tres": "three"
+}
+
+vector = Array.new # []
+vector.class # Array - dinamicos
+vector = [1, 2, 3, 4, 5] # [1, 2, 3, 4, 5]
+vector = Array.new 3 # [nil, nil, nil]
+vector = Array,new 3,"hola" # ["hola", "hola", "hola"]
+vector = [1, 63, 23, 612, [2, 3], 2.5, "hola"] # [1, 63, 23, 612, [2, 3], 2.5, "hola"]
+vector.methods # metodos de la clase Array del objeto vector
+array = [1, 23, 321, 2]
+array.include? 5 # false
+array,include? 23 # true
+array[0] # 1
+array.at 0 # 1
+array.slice 0 # 1
+array = [1, 62, 32, 60, 13, 2 ,15]
+array.sort # [1, 2, 13, 15, 32, 60, 62]
+array # [1, 62, 32, 60, 13, 2 ,15]
+array.sort!
+array # [1, 2, 13, 15, 32, 60, 62]
+array.last # 62
+x = [5, 8, 12, 9, 4, 30]
+x.detect { |e| e % 6 == 0 } # 12
+x.find { |e| e % 6 == 0 } # 12
+x.find_all { |e| e % 2 == 0 } # [8, 12, 4, 30]
+array = ["hola", "adios", "hola", "adios"]
+array = %w(hola adios hola adios) # ["hola", "adios", "hola", "adios"]
+a = %w(January February March Abril) # ["January", "February", "March", "Abril"]
+a.grep(/ary/) # ["January", "February"]
+
+h1 = {"one" => "uno", "two" => "dos"} # {"one" => "uno", "two" => "dos"}
+h1.class # Hash
+h1.store("three", "tres") # "tres"
+h1 # {"one" => "uno", "two" => "dos", "three" => "tres}
+h1.methods # [metodos de la clase Hash del objeto h1]
+h1.empty? # false
+h1.length # 3
+h1.size # 3
+h1.clear # {}
+h1.empty? # true
+h1 = {1 => 1, 2 => 4, 3 => 9, 4 => 16}
+h1.delete(3) # 9
+
+h1 # { 1 => 1, 2 => 4, 4 => 16}
+h1.each do |key, val|
+  print val, " ", key, "; "
+end
+# 1 1; 4 2; 16 4; => {1=>1, 2=>4, 4=>16}
+
+h1.invert # {1=>1, 4=>2, 16=>4}
+a = {"a" => 1, "b" => 2 }
+a.has_key? "c" # false
+a.include? "a" # true
+a.include? 1 # false - solo verifica las llaves
+a.has_value? 1 # true - solo verifica en los valores
+a.to_a # [["a",1],["b",2]]
+a.values # [1,2]
+a.keys # ["a","b"]
+names = { "fredy" => "jones", "jane" => "tucket", "joe" => "tucker", "mary" => "SMITH" }
+names.select { | key, value| value == "tucket" } # {"jane"=>"tucket"}
+
+dict = { "base" => "foundation", "pedestal" => "base" }
+added = {"base" => "non-acid", "salt" => "NaCl" }
+new_dict = dict.merge(added) # {"base"=>"non-acid", "pedestal"=>"base", "salt"=>"NaCl"} - sobre escribe la ultima llave a las primeras llaves
+
+.Ranges
+
+(10..20).step(2).to_a # [10, 12, 14, 16, 18, 20]
+digits = 0..9 # 0..9
+digits # 0..9
+digits.class # Range
+digits.is_a? Range # true
+digits.is_a? String # false
+digits.to_a # [0, 1, 2, 3, 4, 5, ,6 ,7 ,8 ,9]
+0..9 - inclusivo porque incluye ambos numeros
+0...9 - exclusivo, solo incluye del primer numero a 1 numero antes del ultimo
+# [0, 1, 2, 3, 4, 5, 6, 7, 8]
+digits.exclude_end? # false
+digits2 = 0...9 # 0...9
+digits2.exclude_end? # true
+digits1.max # 9
+digits1.min # 0
+
+letters = "a".."z" # "a".."z"
+letters.to_a # ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+letters.each { |x| puts x } # 
+r1 = 23456..34567 # 23456..34567
+r1.include? 30000 # true
+r1.include? 50000 # false
+r1.methods # [metodos de la clase Range del objeto r1]
+rango = (1..30).step(2) # - porque quiero agregarle el metodo step a todo el rango
+rango.to_a # [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]
+
+.Condiciones
+
+nombre = gets # Toma de valor absolutamente todo, la cadena y el enter
+Sergio
+=> "Sergio\n"
+nombre2 = gets.chomp # No captura el enter, solo el valor de la cadena
+Sergio
+=> "Sergio"
+
+if nombre == nombre2
+  puts "iguales"
+else
+ puts "diferentes"
+end
+
+.Regex
+.Bloques
+.Ciclos
+.Procs y lambdas
+.Manejo de excepciones
+
+.POO / Programación orientada a objetos
+
+  BasicObject
+    Object
+String Range Numeric Array Hash Module
+
+      Numeric
+Integer Float Complex
+
+  Module
+Class
+
+BasicObject es una clase vacía y sirve para que todas las clases hereden de esta
+
+Module es un conjunto de metodos y constantes y la clase Class es hija de la clase Module
+
+class Person
+end
+
+Person.class # Class - cualquier clase nueva heredara de la clase Class
+
+Podemos preguntar su antecesor o superclase
+
+Class.superclass # Module
+Person.superclass # Object
+Module.class # Class
+
+Entramos en un tipo de paradoja al ver las respuestas con como estan ordenadas arriba
+
+Person.class va a ser Class ya que Person es una clase
+Pero Person.superclass es Object porque Person termina siendo un objeto
+
+La clase class es una instancia de la clase class
+Un module es un conjunto de metodo y constantes agrupadas dentro de untodo
+por lo que es lo mismo que una clase, pero la diferencia principal es que una clase puede
+ser instanciada pero un module no.
+
+Module es una superclase de Class pero tambien una instancia de Class asi tambien las demas clases
+son una instancia de Class, todos heredan de la clase Class pero la clase principal es la clase
+BasicObject
+
+.Metodos accesores
+.Modificadores de acceso
+.Herencia
+.Módulos y mixins
+
