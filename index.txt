@@ -517,3 +517,88 @@ En el proyecto una vez que ya lo inicialice con bundle init, ahi creare una carp
 
 src sera para guardar todos los archivos en si de ruby
 dist sera para guardar todos los archivos que utilizaremos en el proyecto
+
+.Time
+
+
+La clase Time en Ruby es parte del núcleo del lenguaje Ruby y no está específicamente asociada a
+Ruby on Rails. Time se utiliza para representar fechas y horas en Ruby y ofrece diversas
+funcionalidades para trabajar con ellas. Aquí hay un resumen de la clase Time:
+
+Puedes crear un objeto Time de varias maneras:
+
+# Obtener la hora actual
+current_time = Time.now
+
+# Crear un objeto Time con una fecha y hora específicas
+specific_time = Time.new(2023, 11, 16, 12, 30, 0)
+
+Algunos de los métodos más comunes de la clase Time incluyen:
+
+future_time = current_time + 60  # Sumar 60 segundos
+past_time = current_time - 3600  # Restar 1 hora (3600 segundos)
+
+formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+
+Puedes especificar el formato utilizando directivas como %Y para el año, %m para el mes, %d
+para el día, %H para la hora, %M para los minutos, %S para los segundos, entre otros.
+
+year = current_time.year
+month = current_time.month
+day = current_time.day
+hour = current_time.hour
+minute = current_time.min
+second = current_time.sec
+
+future_time > current_time  # Compara si `future_time` es después de `current_time`
+
+cuando trabajas con la clase Time y deseas sumar tiempo, generalmente lo haces sumando segundos al
+objeto Time. Esto se debe a que internamente, el tiempo se maneja en segundos.
+
+Por ejemplo, para sumar 5 minutos a un objeto Time, puedes hacerlo así:
+
+current_time = Time.now
+future_time = current_time + 5 * 60  # Sumar 5 minutos (5 * 60 segundos)
+
+Puedes trabajar con zonas horarias utilizando Time y DateTime. Ten en cuenta que el manejo de
+zonas horarias puede ser complejo y es recomendable usar bibliotecas especializadas como TZInfo o
+ActiveSupport::TimeZone (en el caso de Rails) para manejar zonas horarias de manera más robusta.
+
+La clase Time es más adecuada para representar un punto específico en el tiempo, con precisión
+hasta los segundos, pero no es tan flexible para trabajar con fechas específicas y manipulación
+de meses y años.
+
+La clase DateTime proporciona mayor flexibilidad para trabajar con fechas y horas, incluida la
+capacidad de sumar y restar meses directamente, pero puede tener una precisión ligeramente menor
+que Time en términos de manejo de segundos.
+
+.[ [ [] ] ]
+[[][][],
+ [][][],
+ [][][]]
+
+
+En Ruby, existe una clase llamada Matrix que se encuentra en la biblioteca estándar.
+Esta clase proporciona funcionalidades para trabajar con matrices (arreglos bidimensionales) de
+manera más conveniente. Puedes realizar operaciones matriciales, como sumar matrices, multiplicar
+matrices, calcular determinantes, invertir matrices, entre otras.
+
+require 'matrix'
+
+# Crear matrices
+matrix_a = Matrix[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+matrix_b = Matrix[[9, 8, 7], [6, 5, 4], [3, 2, 1]]
+
+# Sumar matrices
+result_matrix = matrix_a + matrix_b
+
+# Multiplicar matrices
+result_matrix = matrix_a * matrix_b
+
+# Mostrar el resultado
+puts result_matrix
+
+En resumen, un arreglo puede tener una o más dimensiones, y cuando tiene dos dimensiones, puede
+considerarse una matriz. Sin embargo, el término "matriz" se utiliza a menudo para referirse
+específicamente a arreglos bidimensionales, y la clase Matrix en Ruby ofrece funcionalidades
+adicionales específicamente diseñadas para trabajar con matrices.
