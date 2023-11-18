@@ -479,3 +479,36 @@ En ruby asi como en muchos lenguajes, podemos leer archivos y escribirlos
 Los archivos se controlan linea por linea, ya sea de arriba a abajo de abajo hacia abajo
 
 Vamos a crear un archivo file.txt dentro de mi carpeta src
+
+.Proyecto final
+
+clases
+objetos
+archivos
+gemas
+etc...
+
+Primero debemos diagramacion nuestro proyecto a traves de sus casos de uso.
+Quien interactuara con nuestro sistema y que acciones tendra ese actor sobre nuestro sistema.
+
+Nuestro actor va a ser: 
+-usuario
+
+El usuario que acciones podra hacer en nuestro sistema?
+-login
+-crear una tarea
+-editar tarea
+-cambiar estado de tarea
+
+
+Estas notas solo son guia de cuando se este haciendo alguna accion:
+
+login: usuario - contraseña # Para el login el actor debe mandar su usuario y su contraseña
+
+crear_tarea: tarea {"name": "string", "state": int} # Para crear una tarea el usuario debe mandar un hash con las llaves, nombre y state y sus valores
+
+editar_tarea: name: "string" # Para editar una tarea el usuario debe mandar como parametro el nombre de la tarea
+
+cambiar_estado: name: "string" # Para cambiar el estado de una tarea el usuario debe mandar como parametro el nombre de la tarea
+
+.proyecto
