@@ -512,3 +512,8 @@ editar_tarea: name: "string" # Para editar una tarea el usuario debe mandar como
 cambiar_estado: name: "string" # Para cambiar el estado de una tarea el usuario debe mandar como parametro el nombre de la tarea
 
 .proyecto
+
+En el proyecto una vez que ya lo inicialice con bundle init, ahi creare una carpeta src y otra llamda dist
+
+src sera para guardar todos los archivos en si de ruby
+dist sera para guardar todos los archivos que utilizaremos en el proyecto
