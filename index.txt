@@ -602,3 +602,24 @@ En resumen, un arreglo puede tener una o más dimensiones, y cuando tiene dos di
 considerarse una matriz. Sin embargo, el término "matriz" se utiliza a menudo para referirse
 específicamente a arreglos bidimensionales, y la clase Matrix en Ruby ofrece funcionalidades
 adicionales específicamente diseñadas para trabajar con matrices.
+
+.Rails
+
+Rails es un framework construido sobre ruby
+
+Un framework es un conjunto de herramientas para un proposito (Applicaciones web)
+
+Rails utiliza el patron MVC
+
+El patron MVC es un patron de arquitectura
+Modelo - Vista - Controlador
+
+.active_record
+
+Es un ORM (Object relational maped), es modelar una clase en una tabla
+en una base de datos
+
+rails routes | grep friends
+
+rails new friends-app -c bootstrap
+
