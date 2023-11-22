@@ -1,0 +1,16 @@
+<div class="container my-5">
+  <p style="color: green"><%= notice %></p>
+
+  <h1>Friends</h1>
+
+  <div id="friends">
+    <% @friends.each do |friend| %>
+      <th scope="col"><%= render friend %></th>
+      <p>
+        <%= link_to "Show this friend", friend %>
+      </p>
+    <% end %>
+  </div>
+
+  <button type="button" class="btn btn-success"><%= link_to "New friend", new_friend_path %></button>
+</div>
